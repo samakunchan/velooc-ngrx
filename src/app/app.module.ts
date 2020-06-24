@@ -31,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     StoreModule.forRoot({}, {}),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EntityDataModule.forRoot({}),
+    EntityDataModule.forRoot(entityConfig),
     EffectsModule.forRoot([]),
   ],
   providers: [],
