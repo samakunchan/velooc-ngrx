@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "velooc-ngrx"
+  "defaultProject": "velooc-ngrx",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
