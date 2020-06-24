@@ -1,4 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'assets/variable';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: $color-primary;
+}
+.primary-dark {
+  background-color: $color-dark;
+  font-weight: 400;
+  color: white;
+  font-size: 24px;
+  .title{
+    font-size: 35px;
+  }
+}
