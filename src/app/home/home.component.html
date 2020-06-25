@@ -1,3 +1,7 @@
-<p>home works!</p>
-<p>Chargement: {{ loading$ | async }}</p>
-<p>Données chargés: {{ loaded$ | async }}</p>
+
+<div *ngIf="loaded$ | async" [@fadeInOnEnter] [@fadeOutOnLeave]>
+  <p>home works!</p>
+  <p>Chargement: {{ loading$ | async }}</p>
+  <p>Données chargés: {{ loaded$ | async }}</p>
+  <h2>YOLOOOOOOOOOO</h2>
+</div>

@@ -50,7 +50,7 @@ import { metaReducers, reducers } from './store';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
