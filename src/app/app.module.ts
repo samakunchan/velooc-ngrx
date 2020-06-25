@@ -15,6 +15,10 @@ import { EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +37,10 @@ import { HttpClientModule } from '@angular/common/http';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EntityDataModule.forRoot(entityConfig),
     EffectsModule.forRoot([]),
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
