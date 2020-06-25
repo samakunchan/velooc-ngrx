@@ -1,4 +1,32 @@
-<mat-toolbar class="mat-elevation-z6 primary-dark">
-  <span class="title">Velooc NgRx</span>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<mat-sidenav-container fullscreen [ngStyle]="{ 'background-color': '#ffa040' }">
+  <mat-sidenav class="mat-sidenav" #start>
+    <div class="sidebar-header">
+      <div class="icon-header-container">
+        <mat-icon class="icon-header">directions_bike</mat-icon>
+      </div>
+      <h3 class="title">Velyon</h3>
+    </div>
+    <mat-nav-list (click)="start.close()">
+      <a mat-list-item routerLink="/home"><mat-icon class="icon">home</mat-icon> <span>Home</span></a>
+      <a mat-list-item routerLink="/about"><mat-icon class="icon">info</mat-icon> <span>About</span></a>
+      <a mat-list-item routerLink="/map"><mat-icon class="icon"> map</mat-icon> <span>Map</span></a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar class="mat-elevation-z6 primary-dark">
+    <button class="menu-button" mat-icon-button (click)="start.open('mouse')">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="title">Velyon</span>
+    <div class="flex-spacer"></div>
+
+    <a mat-list-item routerLink="/home" class="nav-link">Home</a>
+    <a mat-list-item routerLink="/map" class="nav-link">map</a>
+    <a mat-list-item routerLink="/about" class="nav-link">about</a>
+    <a mat-icon-button href="https://github.com/samakunchan/velooc-ngrx" target="_blank">
+      <mat-icon>code</mat-icon>
+    </a>
+  </mat-toolbar>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+</mat-sidenav-container>

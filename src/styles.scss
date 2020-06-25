@@ -17,5 +17,53 @@ body {
   font-size: 24px;
   .title {
     font-size: 35px;
+    width: 100%;
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
+  .nav-link {
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  .flex-spacer {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+  }
+  .menu-button {
+    display: none;
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+}
+.mat-sidenav {
+  .title {
+    font-size: 35px;
+    color: $color-light;
+    font-weight: 400;
+    margin: 0;
+  }
+  .sidebar-header {
+    text-align: center;
+    background-color: #c43e00;
+    min-width: 300px;
+    padding: 20px;
+    .icon-header {
+      font-size: 120px;
+      color: $color-light;
+    }
+  }
+  .icon {
+    color: $color-primary;
+    margin-right: 20px;
+  }
+  .icon-header-container {
+    text-align: center;
+    width: 65%;
   }
 }
