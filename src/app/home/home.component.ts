@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CarousselService } from '../core/services/caroussel.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'velooc-home',
@@ -6,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  loading$: Observable<boolean>;
+  loaded$: Observable<boolean>;
+  constructor(private carousselService: CarousselService) {
+    this.loading$ = this.carousselService.loading$;
+    this.loaded$ = this.carousselService.loaded$;
+    this.carousselService.getAll();
+  }
 
   ngOnInit(): void {}
 }

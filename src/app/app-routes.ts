@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
+import { CarousselResolver } from './core/services/caroussel.resolver';
 
-export const homeRoutes: Routes = [{ path: '', component: HomeComponent }];
+export const homeRoutes: Routes = [{ path: '', component: HomeComponent, resolve: { caroussel: CarousselResolver } }];
 
 export const aboutRoutes: Routes = [{ path: '', component: AboutComponent }];
 
