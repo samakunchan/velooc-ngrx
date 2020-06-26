@@ -1,7 +1,16 @@
-
-<div *ngIf="loaded$ | async" [@fadeInOnEnter] [@fadeOutOnLeave]>
-  <p>home works!</p>
-  <p>Chargement: {{ loading$ | async }}</p>
-  <p>Données chargés: {{ loaded$ | async }}</p>
-  <h2>YOLOOOOOOOOOO</h2>
+<div *ngIf="loaded$ | async">
+  <div style="text-align: center; width: 100%;">
+    <ng-container *ngIf="caroussel$ | async as caroussel">
+      <div *ngIf="animation === 'fadeIn'" [@fadeIn]="animationState">
+        <h1>{{ caroussel.title }}</h1>
+        <h3>{{ caroussel.subTitle }}</h3>
+        <button mat-icon-button (click)="onLeft(caroussel.id)">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onRight(caroussel.id)">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </div>
 </div>

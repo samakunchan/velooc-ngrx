@@ -7,10 +7,12 @@ import { CarousselService } from '../core/services/caroussel.service';
 import { CarousselDataService } from '../core/services/caroussel-data.service';
 import { EntityDataService, EntityDefinitionService } from '@ngrx/data';
 import { CarousselResolver } from '../core/services/caroussel.resolver';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, RouterModule.forChild(homeRoutes)],
+  imports: [CommonModule, RouterModule.forChild(homeRoutes), MatIconModule, MatButtonModule],
   providers: [CarousselService, CarousselResolver, CarousselDataService],
 })
 export class HomeModule {

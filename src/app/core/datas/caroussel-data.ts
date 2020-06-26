@@ -20,7 +20,7 @@ export const carousselData: Caroussel[] = [
     subTitle: 'Puis faîtes votre réservation et signez.',
   },
   {
-    id: 2,
+    id: 3,
     path: 'string',
     title: 'Comment ça marche? (étape 3)',
     subTitle: 'La réservation dure 20mins.',
