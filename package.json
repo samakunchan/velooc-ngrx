@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~9.1.7",
+    "@angular/animations": "^10.0.0",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.7",
     "@angular/compiler": "~9.1.7",
@@ -31,6 +31,7 @@
     "@ngrx/store": "^9.2.0",
     "@ngrx/store-devtools": "^9.2.0",
     "@schematics/angular": "^9.1.9",
+    "angular-animations": "0.0.10",
     "node-sass": "^4.14.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
