@@ -67,3 +67,20 @@ body {
     width: 65%;
   }
 }
+.container {
+  .icon-header {
+    padding-top: 40px;
+    font-size: 120px;
+    margin-left: -90px;
+    color: $color-primary;
+  }
+  .infos {
+    max-width: 500px;
+    margin: 0 auto;
+    color: $color-primary;
+    padding: 40px;
+    h1 {
+      font-weight: 400;
+    }
+  }
+}

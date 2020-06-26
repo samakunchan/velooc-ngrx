@@ -1,9 +1,12 @@
 <div *ngIf="loaded$ | async">
   <div style="text-align: center; width: 100%;">
     <ng-container *ngIf="caroussel$ | async as caroussel">
-      <div *ngIf="animation === 'fadeIn'" [@fadeIn]="animationState">
-        <h1>{{ caroussel.title }}</h1>
-        <h3>{{ caroussel.subTitle }}</h3>
+      <div *ngIf="animation === 'fadeIn'" class="container">
+        <mat-icon class="icon-header" [@jello]="animationState">{{ caroussel.path }}</mat-icon>
+        <div class="infos" [@fadeIn]="animationState" [@fadeOut]="!animationState">
+          <h1>{{ caroussel.title }}</h1>
+          <h3>{{ caroussel.subTitle }}</h3>
+        </div>
         <button mat-icon-button (click)="onLeft(caroussel.id)">
           <mat-icon>keyboard_arrow_left</mat-icon>
         </button>

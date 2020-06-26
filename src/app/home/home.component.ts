@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarousselService } from '../core/services/caroussel.service';
 import { Observable } from 'rxjs';
-import { fadeInAnimation, fadeOutAnimation } from 'angular-animations';
+import { fadeInAnimation, fadeOutAnimation, jelloAnimation } from 'angular-animations';
 import { Caroussel } from '../core/models/caroussel.model';
 import { map } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   selector: 'velooc-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [fadeInAnimation(), fadeOutAnimation()],
+  animations: [fadeInAnimation(), fadeOutAnimation(), jelloAnimation()],
 })
 export class HomeComponent implements OnInit {
   loading$: Observable<boolean>;
@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     this.caroussel$ = this.carousselService.getAll().pipe(
       map((caroussel) => {
         if (index >= caroussel.length - 1) {
-          index = 0;
+          index = -1;
         }
         return caroussel[index + 1];
       }),
