@@ -4,10 +4,18 @@
   <p>Nombre de stations ouvert: {{ stationOpen$ | async }}</p>
   <p>Nombre de stations fermé: {{ stationClose$ | async }}</p>
   <p>autres: {{ stationOthers$ | async }}</p>
-  <ng-container *ngFor="let bike of bikes$ | async">
-    <li>
-      <span>{{ bike.name }}: </span>
-      <span [ngStyle]="{ color: getColor(bike.status) }">{{ bike.status }}</span>
-    </li>
-  </ng-container>
+  <!--  <ng-container *ngFor="let bike of bikes$ | async">-->
+  <!--    <li>-->
+  <!--      <span>{{ bike.name }}: </span>-->
+  <!--      <span [ngStyle]="{ color: getColor(bike.status) }">{{ bike.status }}</span>-->
+  <!--    </li>-->
+  <!--  </ng-container>-->
+  <h1>NgRx + Mapbox Tutorial</h1>
+  <mgl-map [center]="initialCenter" [zoom]="[initialZoom]" (load)="loadMap($event)" [style]="'mapbox://styles/mapbox/streets-v11'">
+    <!--    <mgl-marker *ngFor="let bike of bikes$ | async" [feature]="bike">-->
+    <!--      <div (click)="markerClick(bike)">-->
+    <!--        <img width="20" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Map_marker.svg/780px-Map_marker.svg.png" />-->
+    <!--      </div>-->
+    <!--    </mgl-marker>-->
+  </mgl-map>
 </ng-container>
