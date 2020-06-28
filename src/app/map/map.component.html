@@ -1,1 +1,13 @@
-<p>map works!</p>
+<ng-container *ngIf="loaded$ | async">
+  <p>map works!</p>
+  <p>Nombre de stations: {{ total$ | async }}</p>
+  <p>Nombre de stations ouvert: {{ stationOpen$ | async }}</p>
+  <p>Nombre de stations fermé: {{ stationClose$ | async }}</p>
+  <p>autres: {{ stationOthers$ | async }}</p>
+  <ng-container *ngFor="let bike of bikes$ | async">
+    <li>
+      <span>{{ bike.name }}: </span>
+      <span [ngStyle]="{ color: getColor(bike.status) }">{{ bike.status }}</span>
+    </li>
+  </ng-container>
+</ng-container>

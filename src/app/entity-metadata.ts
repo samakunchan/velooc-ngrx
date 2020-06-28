@@ -1,12 +1,8 @@
 import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
 
-const entityMetadata: EntityMetadataMap = {
-  Caroussel: {},
-};
+const entityMetadata: EntityMetadataMap = {};
 
-const pluralNames = {
-  Caroussel: 'Caroussels',
-};
+const pluralNames = {};
 
 export const entityConfig: EntityDataModuleConfig = {
   entityMetadata,
