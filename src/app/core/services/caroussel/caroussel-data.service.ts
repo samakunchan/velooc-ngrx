@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
-import { Caroussel } from '../models/caroussel.model';
+import { Caroussel } from '../../models/caroussel.model';
 import { Observable, of } from 'rxjs';
-import { carousselData } from '../datas/caroussel-data';
+import { carousselData } from '../../datas/caroussel-data';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()

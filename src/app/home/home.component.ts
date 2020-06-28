@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CarousselService } from '../core/services/caroussel.service';
+import { CarousselService } from '../core/services/caroussel/caroussel.service';
 import { Observable } from 'rxjs';
 import { fadeInAnimation, fadeOutAnimation, jelloAnimation } from 'angular-animations';
 import { Caroussel } from '../core/models/caroussel.model';

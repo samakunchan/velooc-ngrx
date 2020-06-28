@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { homeRoutes } from '../app-routes';
-import { CarousselService } from '../core/services/caroussel.service';
-import { CarousselDataService } from '../core/services/caroussel-data.service';
+import { CarousselService } from '../core/services/caroussel/caroussel.service';
+import { CarousselDataService } from '../core/services/caroussel/caroussel-data.service';
 import { EntityDataService, EntityDefinitionService } from '@ngrx/data';
-import { CarousselResolver } from '../core/services/caroussel.resolver';
+import { CarousselResolver } from '../core/services/caroussel/caroussel.resolver';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
