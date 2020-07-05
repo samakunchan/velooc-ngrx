@@ -3,8 +3,10 @@ import { Observable } from 'rxjs';
 import { LoadMapsAndStations } from '../store/map.actions';
 import { MapState } from '../store/map.reducer';
 import { Store } from '@ngrx/store';
-import { getOneMarker, loaded } from '../store/map.selectors';
-
+import { getOneStation, loaded } from '../store/map.selectors';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component';
+import { Station } from '../core/models/station.model';
 
 @Component({
   selector: 'velooc-map',
@@ -13,13 +15,26 @@ import { getOneMarker, loaded } from '../store/map.selectors';
 })
 export class MapComponent implements OnInit {
   loaded$: Observable<boolean>;
-  stationSelected$: Observable<any>;
+  stationSelected$: Observable<Station>;
 
-  constructor(private store: Store<MapState>) {}
+  constructor(private store: Store<MapState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loaded$ = this.store.select(loaded);
     this.store.dispatch(new LoadMapsAndStations());
-    this.stationSelected$ = this.store.select(getOneMarker);
+    this.stationSelected$ = this.store.select(getOneStation);
+  }
+
+  onChooseStation(station: Station) {
+    console.log(station);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '400px';
+    dialogConfig.data = {
+      dialogTitle: 'Réservation',
+      station,
+    };
+    this.dialog.open(ReservationDialogComponent, dialogConfig).afterClosed();
   }
 }

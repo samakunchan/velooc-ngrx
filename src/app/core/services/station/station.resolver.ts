@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { filter, first, tap } from 'rxjs/operators';
-import { BikeService } from './bike.service';
+import { StationService } from './station.service';
 
 @Injectable()
-export class BikeResolver implements Resolve<boolean> {
-  constructor(private bikeService: BikeService) {}
+export class StationResolver implements Resolve<boolean> {
+  constructor(private stationService: StationService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.bikeService.loaded$.pipe(
+    return this.stationService.loaded$.pipe(
       tap((loaded) => {
         if (!loaded) {
-          this.bikeService.getAll();
+          this.stationService.getAll();
         }
       }),
       filter((loaded) => !!loaded),

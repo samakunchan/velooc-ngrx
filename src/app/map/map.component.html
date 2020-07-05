@@ -5,12 +5,8 @@
   </div>
 </ng-container>
 <ng-container *ngIf="stationSelected$ | async as station">
-  <div *ngIf="station.available_bikes !== '0'" style="    position: fixed;
-    z-index: 1;
-    right: 20px;">
-    <button mat-raised-button color="primary" style="font-size: 20px;
-    padding: 15px;
-    background: #c43e00;">Reserver à cette station.</button>
+  <div *ngIf="station.available_bikes !== '0'" class="reserver">
+    <button mat-raised-button color="primary" (click)="onChooseStation(station)">Reserver à cette station.</button>
   </div>
 </ng-container>
 <div id="map"></div>

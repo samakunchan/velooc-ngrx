@@ -11,7 +11,7 @@ export const carousselData: Caroussel[] = [
     id: 1,
     path: 'map',
     title: 'Comment ça marche? (étape 1)',
-    subTitle: 'Allez sur la bike et cliquez sur l\'un des marqueurs choisis.',
+    subTitle: 'Allez sur la station et cliquez sur l\'un des marqueurs choisis.',
   },
   {
     id: 2,

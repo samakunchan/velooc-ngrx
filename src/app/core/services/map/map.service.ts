@@ -3,16 +3,16 @@ import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import { environment } from '../../../../environments/environment';
 import { mapInitInfos } from '../../models/map.model';
 import { of } from 'rxjs';
-import { BikeDataService } from '../bike/bike-data.service';
+import { StationDataService } from '../station/station-data.service';
 import { map, tap } from 'rxjs/operators';
-import { Bike } from '../../models/bike.model';
+import { Station } from '../../models/station.model';
 import { MapState } from '../../../store/map.reducer';
 import { Store } from '@ngrx/store';
 import { MarkerClick } from '../../../store/map.actions';
 
 @Injectable()
 export class MapService {
-  constructor(private bikeDataService: BikeDataService, private store: Store<MapState>) {}
+  constructor(private stationDataService: StationDataService, private store: Store<MapState>) {}
 
   initMap() {
     mapboxgl.accessToken = environment.mapBoxAccessToken;
@@ -23,37 +23,36 @@ export class MapService {
   }
 
   loadStations(data) {
-    return this.bikeDataService.getAll().pipe(
-      map((bikes) =>
-        bikes.map((bike: Bike, index: number) => {
+    return this.stationDataService.getAll().pipe(
+      map((stations) =>
+        stations.map((station: Station, index: number) => {
           return {
             type: 'features',
             properties: {
               id: index,
               description: `
-                <h3>${bike.name}</h3>
-                <h4>Vélo disponible: ${bike.available_bikes}</h4>
+                <h3>${station.name}</h3>
+                <h4>Vélo disponible: ${station.available_bikes}</h4>
                 <h4>OUVERT</h4>
-                <h4>Adresse: ${bike.address}, ${bike.address2}</h4>
-                <h4>Commune: ${bike.commune}</h4>
-                <h4>Dernière mise à jour: ${bike.last_update}</h4>
-                `
-              ,
-              number: bike.number,
-              address: bike.address,
-              address2: bike.address2,
-              availability: bike.availability,
-              bikes_stand: bike.bikes_stand,
-              available_bikes: bike.available_bikes,
-              available_bikes_stand: bike.available_bikes_stand,
-              commune: bike.commune,
-              name: bike.name,
-              status: bike.status,
-              last_update: bike.last_update,
+                <h4>Adresse: ${station.address}, ${station.address2}</h4>
+                <h4>Commune: ${station.commune}</h4>
+                <h4>Dernière mise à jour: ${station.last_update}</h4>
+                `,
+              number: station.number,
+              address: station.address,
+              address2: station.address2,
+              availability: station.availability,
+              bikes_stand: station.bikes_stand,
+              available_bikes: station.available_bikes,
+              available_bikes_stand: station.available_bikes_stand,
+              commune: station.commune,
+              name: station.name,
+              status: station.status,
+              last_update: station.last_update,
             },
             geometry: {
               type: 'Point',
-              coordinates: [bike.lng, bike.lat],
+              coordinates: [station.lng, station.lat],
             },
           };
         }),
@@ -123,7 +122,7 @@ export class MapService {
       const description =
         marker.properties.available_bikes === '0' ? marker.properties.description + message : marker.properties.description;
       new mapboxgl.Popup().setLngLat(coordinates).setHTML(description).addTo(data.mapboxInit);
-      this.store.dispatch(new MarkerClick({ geoJson: marker.properties }));
+      this.store.dispatch(new MarkerClick({ station: marker.properties }));
     });
   }
 }

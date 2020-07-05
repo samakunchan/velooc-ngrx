@@ -1,4 +1,4 @@
-export interface Bike {
+export interface Station {
   number: number;
   name: string;
   available_bikes: number;

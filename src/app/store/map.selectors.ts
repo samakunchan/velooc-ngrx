@@ -5,4 +5,4 @@ export const getMapState = createFeatureSelector<MapState>('map');
 
 export const loading = createSelector(getMapState, (state: MapState) => state.loading);
 export const loaded = createSelector(getMapState, (state: MapState) => state.loaded);
-export const getOneMarker = createSelector(getMapState, (state: MapState) => state.geoJson);
+export const getOneStation = createSelector(getMapState, (state: MapState) => state.station);
