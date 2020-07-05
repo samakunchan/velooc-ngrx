@@ -38,8 +38,6 @@ import { metaReducers, reducers } from './store';
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
-        strictStateSerializability: true,
-        strictActionSerializability: true,
       },
     }),
     StoreRouterConnectingModule.forRoot(),

@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BikeService } from '../core/services/bike/bike.service';
 import { Observable } from 'rxjs';
-import { Bike } from '../core/models/bike.model';
-import { map } from 'rxjs/operators';
+import { LoadMapsAndStations } from '../store/map.actions';
+import { MapState } from '../store/map.reducer';
+import { Store } from '@ngrx/store';
+import { getOneStation, loaded } from '../store/map.selectors';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component';
+import { Station } from '../core/models/station.model';
 
 @Component({
   selector: 'velooc-map',
@@ -10,37 +14,27 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  loading$: Observable<boolean>;
   loaded$: Observable<boolean>;
-  total$: Observable<number>;
-  stationOpen$: Observable<number>;
-  stationClose$: Observable<number>;
-  stationOthers$: Observable<number>;
-  bikes$: Observable<Bike[]>;
+  stationSelected$: Observable<Station>;
 
-  constructor(private bikeService: BikeService) {}
+  constructor(private store: Store<MapState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.loading$ = this.bikeService.loading$;
-    this.loaded$ = this.bikeService.loaded$;
-    this.total$ = this.bikeService.count$;
-    this.bikes$ = this.bikeService.entities$.pipe(map((bikes) => bikes));
-    this.stationOpen$ = this.bikeService.entities$.pipe(map((stations) => stations.filter((station) => station.status === 'OPEN').length));
-    this.stationClose$ = this.bikeService.entities$.pipe(
-      map((stations) => stations.filter((station) => station.status === 'CLOSED').length),
-    );
-    this.stationOthers$ = this.bikeService.entities$.pipe(
-      map((stations) => stations.filter((station) => station.status !== 'CLOSED' && station.status !== 'OPEN').length),
-    );
+    this.loaded$ = this.store.select(loaded);
+    this.store.dispatch(new LoadMapsAndStations());
+    this.stationSelected$ = this.store.select(getOneStation);
   }
 
-  getColor(condition: string) {
-    if (condition === 'OPEN') {
-      return 'green';
-    } else if (condition === 'CLOSED') {
-      return 'red';
-    } else {
-      return 'gray';
-    }
+  onChooseStation(station: Station) {
+    console.log(station);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '400px';
+    dialogConfig.data = {
+      dialogTitle: 'Réservation',
+      station,
+    };
+    this.dialog.open(ReservationDialogComponent, dialogConfig).afterClosed();
   }
 }

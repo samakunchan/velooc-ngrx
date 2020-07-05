@@ -4,27 +4,48 @@ import { MapComponent } from './map.component';
 import { RouterModule } from '@angular/router';
 import { mapRoutes } from '../app-routes';
 import { EntityDataService, EntityDefinitionService } from '@ngrx/data';
-import { BikeDataService } from '../core/services/bike/bike-data.service';
-import { BikeService } from '../core/services/bike/bike.service';
-import { Bike } from '../core/models/bike.model';
-import { BikeResolver } from '../core/services/bike/bike.resolver';
+import { StationDataService } from '../core/services/station/station-data.service';
+import { StationService } from '../core/services/station/station.service';
+import { Station } from '../core/models/station.model';
+import { StationResolver } from '../core/services/station/station.resolver';
+import { EffectsModule } from '@ngrx/effects';
+import { MapEffects } from '../store/map.effects';
+import { StoreModule } from '@ngrx/store';
+import { mapFeatureKey, mapReducer } from '../store/map.reducer';
+import { MapService } from '../core/services/map/map.service';
+import { MatButtonModule } from '@angular/material/button';
+import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [MapComponent],
-  imports: [CommonModule, RouterModule.forChild(mapRoutes)],
-  providers: [BikeService, BikeDataService, BikeResolver],
+  declarations: [MapComponent, ReservationDialogComponent],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(mapRoutes),
+    StoreModule.forFeature(mapFeatureKey, mapReducer),
+    EffectsModule.forFeature([MapEffects]),
+    MatButtonModule,
+    MatDialogModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+  ],
+  providers: [StationService, StationDataService, StationResolver, MapService],
 })
 export class MapModule {
   constructor(
     private eds: EntityDefinitionService,
-    private bikeDataService: BikeDataService,
+    private stationDataService: StationDataService,
     private entityDataService: EntityDataService,
   ) {
     this.eds.registerMetadataMap({
-      Bike: {
-        selectId: (bike: Bike) => bike.number,
+      Station: {
+        selectId: (station: Station) => station.number,
       },
     });
-    this.entityDataService.registerService('Bike', bikeDataService);
+    this.entityDataService.registerService('Station', stationDataService);
   }
 }

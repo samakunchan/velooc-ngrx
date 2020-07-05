@@ -1,0 +1,19 @@
+#map {
+  height: 600px;
+  cursor: pointer;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: solid #c43e00 6px;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+.reserver {
+  position: fixed;
+  z-index: 1;
+  right: 20px;
+  button {
+    font-size: 20px;
+    padding: 15px;
+    background: #c43e00;
+  }
+}

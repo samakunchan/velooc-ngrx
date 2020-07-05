@@ -74,13 +74,42 @@ body {
     margin-left: -90px;
     color: $color-primary;
   }
-  .infos {
-    max-width: 500px;
-    margin: 0 auto;
-    color: $color-primary;
-    padding: 40px;
-    h1 {
-      font-weight: 400;
-    }
+}
+.infos {
+  max-width: 500px;
+  margin: 0 auto;
+  color: $color-primary;
+  padding: 40px;
+  h1 {
+    font-weight: 400;
   }
+}
+.mapboxgl-popup-tip {
+  border-top-color: $color-primary !important;
+}
+.mapboxgl-popup-anchor-top {
+  .mapboxgl-popup-tip {
+    border-bottom-color: $color-primary !important;
+  }
+}
+.mapboxgl-popup-content {
+  position: relative;
+  background: $color-primary !important;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 15px 10px 15px 10px;
+  pointer-events: auto;
+  min-width: 300px;
+  h3 {
+    color: white;
+    font-size: 25px;
+    font-weight: 400;
+  }
+  h4 {
+    font-weight: 400;
+  }
+}
+.text-center {
+  text-align: center;
+  width: 100%;
 }
