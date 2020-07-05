@@ -3,13 +3,6 @@ import { MapState } from './map.reducer';
 
 export const getMapState = createFeatureSelector<MapState>('map');
 
-export const getCurrentCenter = createSelector(getMapState, (state: MapState) => {
-  console.log(state.center);
-  return state.center;
-});
-
-export const getCurrentZoom = createSelector(getMapState, (state: MapState) => state.zoom);
-
-export const getCurrentBBox = createSelector(getMapState, (state: MapState) => state.bbox);
-
-export const getGeoJSON = createSelector(getMapState, (state: MapState) => state.geoJSON);
+export const loading = createSelector(getMapState, (state: MapState) => state.loading);
+export const loaded = createSelector(getMapState, (state: MapState) => state.loaded);
+export const getOneMarker = createSelector(getMapState, (state: MapState) => state.geoJson);

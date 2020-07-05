@@ -1,38 +1,32 @@
-import { LngLatBounds, LngLatLike } from 'mapbox-gl';
 import { MapActions, MapActionTypes } from './map.actions';
+import { GeoJson } from '../core/models/bike.model';
 
 export const mapFeatureKey = 'map';
 
 export interface MapState {
-  center: LngLatLike;
-  zoom: number;
-  bbox: LngLatBounds;
-  geoJSON: any;
+  geoJson: GeoJson;
+  loading: boolean;
+  loaded: boolean;
 }
 
 export const initialState: MapState = {
-  center: {
-    lat: 45.464211,
-    lng: 9.191383,
-  },
-  zoom: 13,
-  bbox: undefined,
-  geoJSON: {},
+  geoJson: undefined,
+  loading: true,
+  loaded: false,
 };
 
 export function mapReducer(state = initialState, action: MapActions): MapState {
   switch (action.type) {
-    case MapActionTypes.LoadMapChanged:
+    case MapActionTypes.LoadMapsAndStations:
       return {
         ...state,
-        center: action.payload.center,
-        zoom: action.payload.zoom,
-        bbox: action.payload.bbox,
+        loading: false,
+        loaded: true,
       };
-    case MapActionTypes.UpdateDataSuccess:
+    case MapActionTypes.MarkerClick:
       return {
         ...state,
-        geoJSON: action.payload.geoJSON,
+        geoJson: action.payload.geoJson,
       };
     default:
       return state;
