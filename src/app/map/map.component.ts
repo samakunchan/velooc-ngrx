@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoadMapsAndStations } from '../store/map.actions';
-import { MapState } from '../store/map.reducer';
+import { LoadMapsAndStations } from '../store/map/map.actions';
+import { MapState } from '../store/map/map.reducer';
 import { Store } from '@ngrx/store';
-import { getOneStation, loaded } from '../store/map.selectors';
+import { getOneStation, loaded } from '../store/map/map.selectors';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component';
 import { Station } from '../core/models/station.model';
@@ -26,11 +26,10 @@ export class MapComponent implements OnInit {
   }
 
   onChooseStation(station: Station) {
-    console.log(station);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '400px';
+    dialogConfig.width = '550px';
     dialogConfig.data = {
       dialogTitle: 'Réservation',
       station,

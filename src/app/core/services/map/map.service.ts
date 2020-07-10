@@ -6,9 +6,9 @@ import { of } from 'rxjs';
 import { StationDataService } from '../station/station-data.service';
 import { map, tap } from 'rxjs/operators';
 import { Station } from '../../models/station.model';
-import { MapState } from '../../../store/map.reducer';
+import { MapState } from '../../../store/map/map.reducer';
 import { Store } from '@ngrx/store';
-import { MarkerClick } from '../../../store/map.actions';
+import { MarkerClick } from '../../../store/map/map.actions';
 
 @Injectable()
 export class MapService {

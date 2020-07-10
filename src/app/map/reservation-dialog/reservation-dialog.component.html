@@ -1,22 +1,25 @@
-<h2 mat-dialog-title>{{ dialogTitle }}</h2>
+<h2 mat-dialog-title class="text-center">{{ dialogTitle }}</h2>
 <mat-dialog-content>
-  <ng-container [formGroup]="reservationForm">
-    <mat-tab-group>
-      <mat-tab label="A quel nom?">
-        <mat-form-field>
-          <input matInput placeholder="Votre nom..." formControlName="nom" />
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Votre prénom..." formControlName="prenom" />
-        </mat-form-field>
-      </mat-tab>
-      <mat-tab label="Signature">
-        Ici c'est la signature
-      </mat-tab>
-    </mat-tab-group>
+  <ng-container>
+    <form [formGroup]="reservationForm">
+      <mat-tab-group>
+        <mat-tab label="A quel nom?">
+          <mat-form-field>
+            <input matInput placeholder="Votre nom..." formControlName="nom" />
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <input matInput placeholder="Votre prénom..." formControlName="prenom" />
+          </mat-form-field>
+        </mat-tab>
+        <mat-tab label="Signature">
+          <velooc-canvas></velooc-canvas>
+        </mat-tab>
+      </mat-tab-group>
+    </form>
   </ng-container>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button (click)="onClose()">Close</button>
-  <button mat-raised-button color="warn" [disabled]="!reservationForm.valid" (click)="onSubmit()">Valider</button>
+  <button mat-raised-button color="warn" [disabled]="!(canvas$ | async) || !reservationForm.valid" (click)="onSubmit()">Valider</button>
 </mat-dialog-actions>
