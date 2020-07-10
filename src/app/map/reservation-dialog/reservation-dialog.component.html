@@ -21,5 +21,8 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button (click)="onClose()">Close</button>
-  <button mat-raised-button color="warn" [disabled]="!(canvas$ | async) || !reservationForm.valid" (click)="onSubmit()">Valider</button>
+  <button mat-raised-button color="warn" [disabled]="!(urlLoaded$ | async) || !reservationForm.valid" (click)="onSubmit()">Valider</button>
+  <button mat-raised-button class="btn btn-white" (click)="redraw()" (touchstart)="redraw()" *ngIf="showButton$ | async">
+    <mat-icon>delete</mat-icon>
+  </button>
 </mat-dialog-actions>

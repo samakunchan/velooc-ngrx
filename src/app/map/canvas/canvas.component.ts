@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { CanvasService } from '../../core/services/canvas/canvas.service';
+import { Store } from '@ngrx/store';
+import { StoreState } from '../../store/store';
+import { ClearCanvas, StoreCanvas } from '../../store/canvas/canvas.actions';
 
 @Component({
   selector: 'velooc-canvas',
@@ -24,6 +27,8 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   @HostListener('touchend', ['$event'])
   touchEnd(event: any) {
     this.canvasService.touchEnd(event);
+    const url = this.canvasService.storageCanvas(this.canvas).url;
+    this.store.dispatch(new StoreCanvas({ url }));
   }
   @HostListener('mouseenter', ['$event'])
   mouseEnter(event: MouseEvent) {
@@ -40,29 +45,17 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   @HostListener('mouseup', ['$event'])
   mouseUp(event: MouseEvent) {
     this.canvasService.mouseUp(event);
+    const url = this.canvasService.storageCanvas(this.canvas).url;
+    this.store.dispatch(new StoreCanvas({ url }));
   }
   @HostListener('mouseleave', ['$event'])
   mouseLeave(event: MouseEvent) {
     this.canvasService.mouseLeave(event);
   }
-  @HostListener('window:click', ['$event'])
-  checkDataClick() {
-    const url = this.canvasService.storageCanvas(this.canvas).url;
-    this.canvasService.emitUrlImageCanvas({ url });
-  }
-  @HostListener('window:touchend', ['$event'])
-  checkDataTouch() {
-    const url = this.canvasService.storageCanvas(this.canvas).url;
-    this.canvasService.emitUrlImageCanvas({ url });
-  }
 
-  constructor(private canvasService: CanvasService) {}
+  constructor(private canvasService: CanvasService, private store: Store<StoreState>) {}
 
   ngOnInit(): void {}
-
-  redraw() {
-    this.canvasService.clear();
-  }
 
   ngAfterViewInit(): void {
     this.canvas = this.myCanvas.nativeElement;
@@ -72,6 +65,6 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     this.canvasService.context.strokeStyle = '#000000';
     this.canvas.width = 500;
     this.canvas.height = 300;
-    this.redraw();
+    this.store.dispatch(new ClearCanvas());
   }
 }

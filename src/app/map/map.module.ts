@@ -23,6 +23,9 @@ import { CanvasService } from '../core/services/canvas/canvas.service';
 import { CanvasComponent } from './canvas/canvas.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CanvasEffects } from '../store/canvas/canvas.effects';
+import { ReservationEffects } from '../store/reservation/reservation.effects';
+import { canvasFeatureKey, canvasReducer } from '../store/canvas/canvas.reducer';
+import { reservationFeatureKey, reservationReducer } from '../store/reservation/reservation.reducer';
 
 @NgModule({
   declarations: [MapComponent, ReservationDialogComponent, CanvasComponent],
@@ -30,7 +33,9 @@ import { CanvasEffects } from '../store/canvas/canvas.effects';
     CommonModule,
     RouterModule.forChild(mapRoutes),
     StoreModule.forFeature(mapFeatureKey, mapReducer),
-    EffectsModule.forFeature([MapEffects, CanvasEffects]),
+    StoreModule.forFeature(canvasFeatureKey, canvasReducer),
+    StoreModule.forFeature(reservationFeatureKey, reservationReducer),
+    EffectsModule.forFeature([MapEffects, CanvasEffects, ReservationEffects]),
     MatButtonModule,
     MatIconModule,
     MatDialogModule,

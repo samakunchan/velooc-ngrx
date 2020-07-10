@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { finalize, first, map, tap } from 'rxjs/operators';
 import { CanvasService } from '../../core/services/canvas/canvas.service';
+import { Store } from '@ngrx/store';
+import { getUrl, showButton, StoreState, urlLoaded } from '../../store/store';
+import { ClearCanvas } from '../../store/canvas/canvas.actions';
 
 @Component({
   selector: 'velooc-reservation-dialog',
@@ -15,8 +18,8 @@ export class ReservationDialogComponent implements OnInit {
   dialogTitle: string;
   station: any;
   reservationForm: FormGroup;
-  canvas$: Observable<boolean>;
-  canvasUrl$: Observable<string>;
+  urlLoaded$: Observable<boolean>;
+  showButton$: Observable<boolean>;
   canvas;
   context;
   lastPos;
@@ -26,11 +29,12 @@ export class ReservationDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data,
     private formBuilder: FormBuilder,
     private canvasService: CanvasService,
+    private store: Store<StoreState>
   ) {}
 
   ngOnInit(): void {
-    this.canvas$ = this.canvasService.canvas$;
-    this.canvasUrl$ = this.canvasService.urlImageCanvas$;
+    this.urlLoaded$ = this.store.select(urlLoaded);
+    this.showButton$ = this.store.select(showButton);
     this.dialogTitle = this.data.dialogTitle;
     this.station = this.data.station;
     this.reservationForm = this.formBuilder.group({
@@ -44,18 +48,22 @@ export class ReservationDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  redraw() {
+    this.store.dispatch(new ClearCanvas());
+  }
+
   onSubmit() {
-    this.canvasService.urlImageCanvas$
+    this.store.select(getUrl)
       .pipe(
-        map((res: any) => {
+        map((res: string) => {
           return {
-            ...res,
+            ...{ url: res },
             ...this.station,
             ...this.reservationForm.value,
           };
         }),
         tap((res) => {
-          console.log('les données et => ', res);
+          // console.log('les données et => ', res);
           return this.canvasService.emitCanvas(false);
         }),
         first(),

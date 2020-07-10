@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable()
 export class CanvasService {
@@ -76,8 +76,10 @@ export class CanvasService {
     }
   }
   clear() {
+    console.log('je clear');
     this.canvasSubject.next(false);
     this.canvas.width = this.canvas.width;
+    return of(null);
   }
   checkData(canvas) {
     return this.storageCanvas(canvas);
