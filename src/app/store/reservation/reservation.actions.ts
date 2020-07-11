@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Station } from '../../core/models/station.model';
+import { Reservation } from '../../core/models/reservation.model';
 
 export enum ReservationActionTypes {
   LoadReservations = '[Reservation] Load Reservations',
@@ -9,11 +9,12 @@ export enum ReservationActionTypes {
 
 export class LoadReservations implements Action {
   readonly type = ReservationActionTypes.LoadReservations;
+  constructor(public payload: { data: any }) {}
 }
 
 export class LoadReservationsSuccess implements Action {
   readonly type = ReservationActionTypes.LoadReservationsSuccess;
-  constructor(public payload: { data: Station }) {}
+  constructor(public payload: { reservation: Reservation }) {}
 }
 
 export class LoadReservationsFailure implements Action {

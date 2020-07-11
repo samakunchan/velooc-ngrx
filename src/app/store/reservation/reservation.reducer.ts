@@ -16,14 +16,12 @@ export const initialState: ReservationState = {
 
 export function reservationReducer(state = initialState, action: ReservationActions): ReservationState {
   switch (action.type) {
-    case ReservationActionTypes.LoadReservations:
-      return initialState;
     case ReservationActionTypes.LoadReservationsSuccess:
       return {
         ...state,
         success: true,
         failure: false,
-        data: action.payload.data,
+        data: action.payload.reservation,
       };
     case ReservationActionTypes.LoadReservationsFailure:
       return {

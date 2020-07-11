@@ -7,7 +7,7 @@ import { CanvasService } from '../../core/services/canvas/canvas.service';
 import { Store } from '@ngrx/store';
 import { getUrl, showButton, StoreState, urlLoaded } from '../../store/store';
 import { ClearCanvas } from '../../store/canvas/canvas.actions';
-import { LoadReservationsSuccess } from '../../store/reservation/reservation.actions';
+import { LoadReservations } from '../../store/reservation/reservation.actions';
 
 @Component({
   selector: 'velooc-reservation-dialog',
@@ -59,11 +59,12 @@ export class ReservationDialogComponent implements OnInit {
       .pipe(
         map((res: string) => {
           return {
+            ...{ url: res },
             ...this.station,
-            ...{ titulaire: { ...this.reservationForm.value, ...{ url: res } } },
+            ...this.reservationForm.value,
           };
         }),
-        tap((data) => this.store.dispatch(new LoadReservationsSuccess({ data }))),
+        tap((data) => this.store.dispatch(new LoadReservations({ data }))),
         first(),
         finalize(() => {
           this.canvasService.emitCanvas(false);
