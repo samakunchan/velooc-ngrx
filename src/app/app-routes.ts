@@ -9,7 +9,7 @@ export const homeRoutes: Routes = [{ path: '', component: HomeComponent, resolve
 
 export const aboutRoutes: Routes = [{ path: '', component: AboutComponent }];
 
-export const mapRoutes: Routes = [{ path: '', component: MapComponent, resolve: { bike: StationResolver } }];
+export const mapRoutes: Routes = [{ path: '', component: MapComponent, resolve: { station: StationResolver } }];
 
 export const globalRoutes: Routes = [
   { path: 'home', loadChildren: () => import('./home/home.module').then((m) => m.HomeModule) },

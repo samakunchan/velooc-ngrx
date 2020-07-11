@@ -23,12 +23,8 @@ export function reservationReducer(state = initialState, action: ReservationActi
         failure: false,
         data: action.payload.reservation,
       };
-    case ReservationActionTypes.LoadReservationsFailure:
-      return {
-        ...state,
-        success: false,
-        failure: true,
-      };
+    case ReservationActionTypes.CancelReservation:
+      return initialState;
     default:
       return state;
   }

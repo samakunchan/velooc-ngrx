@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, map } from 'rxjs/operators';
-import { LoadReservations, LoadReservationsSuccess, ReservationActionTypes } from './reservation.actions';
+import { switchMap, map, tap } from 'rxjs/operators';
+import { CancelReservation, LoadReservations, LoadReservationsSuccess, ReservationActionTypes } from './reservation.actions';
 import { ReservationService } from '../../core/services/reservation/reservation.service';
 import { Reservation } from '../../core/models/reservation.model';
 
@@ -15,6 +15,12 @@ export class ReservationEffects {
         .build(datas.payload.data)
         .pipe(map((reservation: Reservation) => new LoadReservationsSuccess({ reservation }))),
     ),
+  );
+
+  @Effect({ dispatch: false })
+  cancelReservation$ = this.actions$.pipe(
+    ofType<CancelReservation>(ReservationActionTypes.CancelReservation),
+    tap(() => sessionStorage.clear()),
   );
 
   constructor(private actions$: Actions, private reservationService: ReservationService) {}
