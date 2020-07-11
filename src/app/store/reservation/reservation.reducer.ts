@@ -4,13 +4,13 @@ export const reservationFeatureKey = 'reservation';
 
 export interface ReservationState {
   success: boolean;
-  failure: boolean;
+  cancel: boolean;
   data: any;
 }
 
 export const initialState: ReservationState = {
   success: true,
-  failure: false,
+  cancel: false,
   data: undefined,
 };
 
@@ -20,10 +20,15 @@ export function reservationReducer(state = initialState, action: ReservationActi
       return {
         ...state,
         success: true,
-        failure: false,
+        cancel: false,
         data: action.payload.reservation,
       };
     case ReservationActionTypes.CancelReservation:
+      return {
+        ...state,
+        cancel: true,
+      };
+    case ReservationActionTypes.ConfirmCancelReservation:
       return initialState;
     default:
       return state;

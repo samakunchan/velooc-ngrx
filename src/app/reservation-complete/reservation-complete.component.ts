@@ -2,8 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Reservation } from '../core/models/reservation.model';
 import { Store } from '@ngrx/store';
-import { StoreState } from '../store/store';
-import { CancelReservation } from '../store/reservation/reservation.actions';
+import { cancel, StoreState } from '../store/store';
+import { CancelReservation, ConfirmCancelReservation } from '../store/reservation/reservation.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'velooc-reservation-complete',
@@ -12,6 +13,7 @@ import { CancelReservation } from '../store/reservation/reservation.actions';
 })
 export class ReservationCompleteComponent implements OnInit {
   showReservation: Reservation;
+  cancel$: Observable<boolean>;
   constructor(
     private dialogRef: MatDialogRef<ReservationCompleteComponent>,
     @Inject(MAT_DIALOG_DATA) private data,
@@ -20,6 +22,7 @@ export class ReservationCompleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.showReservation = this.data.reservation;
+    this.cancel$ = this.store.select(cancel);
   }
 
   onClose() {
@@ -28,6 +31,10 @@ export class ReservationCompleteComponent implements OnInit {
 
   onCancel() {
     this.store.dispatch(new CancelReservation());
+  }
+
+  onConfirm() {
     this.onClose();
+    this.store.dispatch(new ConfirmCancelReservation());
   }
 }
