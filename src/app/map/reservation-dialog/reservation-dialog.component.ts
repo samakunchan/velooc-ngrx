@@ -7,6 +7,7 @@ import { CanvasService } from '../../core/services/canvas/canvas.service';
 import { Store } from '@ngrx/store';
 import { getUrl, showButton, StoreState, urlLoaded } from '../../store/store';
 import { ClearCanvas } from '../../store/canvas/canvas.actions';
+import { LoadReservationsSuccess } from '../../store/reservation/reservation.actions';
 
 @Component({
   selector: 'velooc-reservation-dialog',
@@ -29,7 +30,7 @@ export class ReservationDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data,
     private formBuilder: FormBuilder,
     private canvasService: CanvasService,
-    private store: Store<StoreState>
+    private store: Store<StoreState>,
   ) {}
 
   ngOnInit(): void {
@@ -53,19 +54,16 @@ export class ReservationDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    this.store.select(getUrl)
+    this.store
+      .select(getUrl)
       .pipe(
         map((res: string) => {
           return {
-            ...{ url: res },
             ...this.station,
-            ...this.reservationForm.value,
+            ...{ titulaire: { ...this.reservationForm.value, ...{ url: res } } },
           };
         }),
-        tap((res) => {
-          // console.log('les données et => ', res);
-          return this.canvasService.emitCanvas(false);
-        }),
+        tap((data) => this.store.dispatch(new LoadReservationsSuccess({ data }))),
         first(),
         finalize(() => {
           this.canvasService.emitCanvas(false);

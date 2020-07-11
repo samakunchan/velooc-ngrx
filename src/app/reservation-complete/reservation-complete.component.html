@@ -1,0 +1,12 @@
+<ng-container>
+  <mat-dialog-content>
+    <h2>{{ showReservation.name }}</h2>
+    <p>Adresse: {{ showReservation.address }}, {{ showReservation.address2 === 'null' ? '' : showReservation.address2 }}</p>
+    <p>Commune: {{ showReservation.commune }}</p>
+    <p>Titulaire: {{ showReservation.titulaire.nom }} {{ showReservation.titulaire.prenom }}</p>
+    <img src="{{ showReservation.titulaire.url }}" alt="Signature de la réservation" title="Signature de la réservation" />
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="onClose()" class="close-btn">Close</button>
+  </mat-dialog-actions>
+</ng-container>

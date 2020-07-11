@@ -21,5 +21,4 @@ export class CanvasEffects {
   );
 
   constructor(private actions$: Actions, private canvasService: CanvasService, private store: Store<StoreState>) {}
-
 }

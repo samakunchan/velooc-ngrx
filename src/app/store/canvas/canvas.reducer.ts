@@ -1,6 +1,5 @@
 import { CanvasActions, CanvasActionTypes } from './canvas.actions';
 
-
 export const canvasFeatureKey = 'canvas';
 
 export interface MyCanvasState {
@@ -12,7 +11,7 @@ export interface MyCanvasState {
 export const initialState: MyCanvasState = {
   url: undefined,
   loaded: false,
-  showButton: false
+  showButton: false,
 };
 
 export function canvasReducer(state = initialState, action: CanvasActions): MyCanvasState {
@@ -28,7 +27,7 @@ export function canvasReducer(state = initialState, action: CanvasActions): MyCa
       return {
         ...state,
         url: action.payload.url,
-        loaded: true
+        loaded: true,
       };
     default:
       return state;

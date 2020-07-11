@@ -12,7 +12,7 @@ export class ShowClearCanvasButton implements Action {
 
 export class StoreCanvas implements Action {
   readonly type = CanvasActionTypes.StoreCanvas;
-  constructor(public payload: { url: string }) { }
+  constructor(public payload: { url: string }) {}
 }
 
 export class ClearCanvas implements Action {
@@ -20,4 +20,3 @@ export class ClearCanvas implements Action {
 }
 
 export type CanvasActions = ShowClearCanvasButton | StoreCanvas | ClearCanvas;
-

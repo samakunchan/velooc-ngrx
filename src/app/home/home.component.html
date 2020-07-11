@@ -1,4 +1,9 @@
-<div *ngIf="loaded$ | async">
+<ng-container *ngIf="reservation$ | async as reservation">
+  <button mat-raised-button class="btn primary-dark" style="position: absolute; right: 0;" (click)="showCompleteReservation(reservation)">
+    Voir la réservation
+  </button>
+</ng-container>
+<ng-container *ngIf="loaded$ | async">
   <div style="text-align: center; width: 100%;">
     <ng-container *ngIf="caroussel$ | async as caroussel">
       <div *ngIf="animation === 'fadeIn'" class="container">
@@ -16,4 +21,4 @@
       </div>
     </ng-container>
   </div>
-</div>
+</ng-container>
