@@ -1,3 +1,8 @@
+<ng-container *ngIf="reservation$ | async as reservation">
+  <button mat-raised-button class="btn primary-dark" style="position: absolute; right: 0;" (click)="showCompleteReservation(reservation)">
+    Voir la réservation
+  </button>
+</ng-container>
 <ng-container *ngIf="loaded$ | async">
   <div class="infos">
     <h1 class="text-center">Application Velyon</h1>

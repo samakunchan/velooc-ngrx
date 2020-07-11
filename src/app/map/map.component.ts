@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoadMapsAndStations } from '../store/map.actions';
-import { MapState } from '../store/map.reducer';
+import { LoadMapsAndStations } from '../store/map/map.actions';
 import { Store } from '@ngrx/store';
-import { getOneStation, loaded } from '../store/map.selectors';
+import { getOneStation, loaded } from '../store/map/map.selectors';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component';
 import { Station } from '../core/models/station.model';
+import { StoreState, success } from '../store/store';
+import { getReservation } from '../store/reservation/reservation.selectors';
+import { ReservationCompleteComponent } from '../reservation-complete/reservation-complete.component';
 
 @Component({
   selector: 'velooc-map',
@@ -16,25 +18,40 @@ import { Station } from '../core/models/station.model';
 export class MapComponent implements OnInit {
   loaded$: Observable<boolean>;
   stationSelected$: Observable<Station>;
+  reservationActives$: Observable<boolean>;
+  reservation$: Observable<Station>;
 
-  constructor(private store: Store<MapState>, private dialog: MatDialog) {}
+  constructor(private store: Store<StoreState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loaded$ = this.store.select(loaded);
+    this.reservationActives$ = this.store.select(success);
+    this.reservation$ = this.store.select(getReservation);
     this.store.dispatch(new LoadMapsAndStations());
     this.stationSelected$ = this.store.select(getOneStation);
   }
 
   onChooseStation(station: Station) {
-    console.log(station);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '400px';
+    dialogConfig.width = '550px';
     dialogConfig.data = {
       dialogTitle: 'Réservation',
       station,
     };
     this.dialog.open(ReservationDialogComponent, dialogConfig).afterClosed();
+  }
+
+  showCompleteReservation(reservation) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '550px';
+    dialogConfig.data = {
+      dialogTitle: 'Réservation',
+      reservation,
+    };
+    this.dialog.open(ReservationCompleteComponent, dialogConfig).afterClosed();
   }
 }

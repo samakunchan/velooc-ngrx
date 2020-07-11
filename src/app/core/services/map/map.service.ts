@@ -6,13 +6,13 @@ import { of } from 'rxjs';
 import { StationDataService } from '../station/station-data.service';
 import { map, tap } from 'rxjs/operators';
 import { Station } from '../../models/station.model';
-import { MapState } from '../../../store/map.reducer';
 import { Store } from '@ngrx/store';
-import { MarkerClick } from '../../../store/map.actions';
+import { MarkerClick } from '../../../store/map/map.actions';
+import { StoreState } from '../../../store/store';
 
 @Injectable()
 export class MapService {
-  constructor(private stationDataService: StationDataService, private store: Store<MapState>) {}
+  constructor(private stationDataService: StationDataService, private store: Store<StoreState>) {}
 
   initMap() {
     mapboxgl.accessToken = environment.mapBoxAccessToken;

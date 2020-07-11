@@ -20,9 +20,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { metaReducers, reducers } from './store';
+import { ReservationCompleteComponent } from './reservation-complete/reservation-complete.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReservationEffects } from './store/reservation/reservation.effects';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ReservationCompleteComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -49,6 +52,8 @@ import { metaReducers, reducers } from './store';
     MatIconModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    MatDialogModule,
+    EffectsModule.forFeature([ReservationEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

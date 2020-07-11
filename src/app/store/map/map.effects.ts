@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { mergeMap } from 'rxjs/operators';
 import { MapActionTypes } from './map.actions';
-import { MapService } from '../core/services/map/map.service';
+import { MapService } from '../../core/services/map/map.service';
 
 @Injectable()
 export class MapEffects {

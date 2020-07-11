@@ -1,5 +1,5 @@
 import { MapActions, MapActionTypes } from './map.actions';
-import { Station } from '../core/models/station.model';
+import { Station } from '../../core/models/station.model';
 
 export const mapFeatureKey = 'map';
 

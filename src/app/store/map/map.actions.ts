@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Station } from '../core/models/station.model';
+import { Station } from '../../core/models/station.model';
 
 export enum MapActionTypes {
   LoadMapsAndStations = '[Map.page] Map loaded and stations loaded',
