@@ -8,4 +8,4 @@ export interface StoreState {
 }
 
 export { getUrl, urlLoaded, showButton } from './canvas/canvas.selectors';
-export { success, cancel } from './reservation/reservation.selectors';
+export { success, cancel, getReservation, getTimer } from './reservation/reservation.selectors';

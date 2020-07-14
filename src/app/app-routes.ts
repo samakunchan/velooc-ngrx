@@ -17,9 +17,9 @@ export const mapRoutes: Routes = [
 ];
 
 export const globalRoutes: Routes = [
-  { path: 'home', loadChildren: () => import('./home/home.module').then((m) => m.HomeModule) },
+  { path: '', loadChildren: () => import('./home/home.module').then((m) => m.HomeModule) },
   { path: 'about', loadChildren: () => import('./about/about.module').then((m) => m.AboutModule) },
   { path: 'map', loadChildren: () => import('./map/map.module').then((m) => m.MapModule) },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '' },
 ];

@@ -5,7 +5,8 @@ import {
   ConfirmCancelReservation,
   LoadReservations,
   LoadReservationsSuccess,
-  ReservationActionTypes
+  ReservationActionTypes,
+  TimerLoaded,
 } from './reservation.actions';
 import { ReservationService } from '../../core/services/reservation/reservation.service';
 import { Reservation } from '../../core/models/reservation.model';
@@ -20,6 +21,12 @@ export class ReservationEffects {
         .build(datas.payload.data)
         .pipe(map((reservation: Reservation) => new LoadReservationsSuccess({ reservation }))),
     ),
+  );
+
+  @Effect()
+  setTimer$ = this.actions$.pipe(
+    ofType<LoadReservationsSuccess>(ReservationActionTypes.LoadReservationsSuccess),
+    switchMap(() => this.reservationService.setTimer().pipe(map((timer: string) => new TimerLoaded({ timer })))),
   );
 
   @Effect({ dispatch: false })

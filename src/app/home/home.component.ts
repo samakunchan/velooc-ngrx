@@ -8,8 +8,9 @@ import { getReservation } from '../store/reservation/reservation.selectors';
 import { Store } from '@ngrx/store';
 import { StoreState } from '../store/store';
 import { Station } from '../core/models/station.model';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ReservationCompleteComponent } from '../reservation-complete/reservation-complete.component';
+import { DialogBuilder } from '../core/utils/dialogBuilder';
 
 @Component({
   selector: 'velooc-home',
@@ -68,14 +69,7 @@ export class HomeComponent implements OnInit {
   }
 
   showCompleteReservation(reservation) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '550px';
-    dialogConfig.data = {
-      dialogTitle: 'Réservation',
-      reservation,
-    };
+    const dialogConfig = new DialogBuilder().withTitle('Réservation').withWidth('550px').withDatas(reservation).build();
     this.dialog.open(ReservationCompleteComponent, dialogConfig).afterClosed();
   }
 }
