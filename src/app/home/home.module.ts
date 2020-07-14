@@ -14,6 +14,7 @@ import { reservationFeatureKey, reservationReducer } from '../store/reservation/
 import { MatDialogModule } from '@angular/material/dialog';
 import { EffectsModule } from '@ngrx/effects';
 import { ReservationEffects } from '../store/reservation/reservation.effects';
+import { ReservationResolver } from '../core/services/reservation/reservation.resolver';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -26,7 +27,7 @@ import { ReservationEffects } from '../store/reservation/reservation.effects';
     EffectsModule.forFeature([ReservationEffects]),
     MatDialogModule,
   ],
-  providers: [CarousselService, CarousselResolver, CarousselDataService],
+  providers: [CarousselService, CarousselResolver, CarousselDataService, ReservationResolver],
 })
 export class HomeModule {
   constructor(

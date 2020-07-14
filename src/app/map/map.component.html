@@ -9,9 +9,11 @@
     <h3 class="text-center">Cliquez sur un marqueur pour réserver votre vélo.</h3>
   </div>
 </ng-container>
-<ng-container *ngIf="stationSelected$ | async as station">
-  <div *ngIf="station.available_bikes !== '0'" class="reserver">
-    <button mat-raised-button color="primary" (click)="onChooseStation(station)">Reserver à cette station.</button>
+<ng-container *ngIf="isReservationActives$ | async as isActive">
+  <div class="reserver" *ngIf="isActive === 'no'">
+    <ng-container *ngIf="stationSelected$ | async as station">
+      <button mat-raised-button color="primary" (click)="onChooseStation(station)">Reserver à cette station.</button>
+    </ng-container>
   </div>
 </ng-container>
 <div id="map"></div>

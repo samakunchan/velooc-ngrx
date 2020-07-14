@@ -37,7 +37,7 @@ export class ReservationDialogComponent implements OnInit {
     this.urlLoaded$ = this.store.select(urlLoaded);
     this.showButton$ = this.store.select(showButton);
     this.dialogTitle = this.data.dialogTitle;
-    this.station = this.data.station;
+    this.station = this.data.datas;
     this.reservationForm = this.formBuilder.group({
       nom: ['Badjah', [Validators.required, Validators.minLength(3)]],
       prenom: ['Cédric', [Validators.required, Validators.minLength(3)]],
@@ -57,7 +57,7 @@ export class ReservationDialogComponent implements OnInit {
     this.store
       .select(getUrl)
       .pipe(
-        map((res: string) => {
+        map((res) => {
           return {
             ...{ url: res },
             ...this.station,

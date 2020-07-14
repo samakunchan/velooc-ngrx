@@ -1,16 +1,21 @@
 <ng-container>
   <mat-dialog-content>
-    <h2>{{ showReservation.station.name }}</h2>
+    <div style="display: flex; justify-content: space-between;">
+      <h2>{{ showReservation.station.name }}</h2>
+      <ng-container *ngIf="timer$ | async as timer; else loading">Durée de la réservation: {{ timer }}</ng-container>
+      <ng-template #loading>{{ message }}</ng-template>
+    </div>
     <p>
       Adresse: {{ showReservation.station.address }},
       {{ showReservation.station.address2 === 'null' ? '' : showReservation.station.address2 }}
     </p>
     <p>Commune: {{ showReservation.station.commune }}</p>
     <p>Titulaire: {{ showReservation.nom }} {{ showReservation.prenom }}</p>
-    <img src="{{ showReservation.url }}" alt="Signature de la réservation" title="Signature de la réservation" />
+    <img width="250" src="{{ showReservation.url }}" alt="Signature de la réservation" title="Signature de la réservation" />
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-raised-button (click)="onClose()" class="close-btn">Close</button>
     <button mat-raised-button (click)="onCancel()" class="clear-btn">Annuler</button>
+    <button mat-raised-button (click)="onConfirm()" *ngIf="cancel$ | async" class="valid-btn">Confirmer et annuler la réservation.</button>
   </mat-dialog-actions>
 </ng-container>

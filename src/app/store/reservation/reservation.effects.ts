@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { switchMap, map, tap } from 'rxjs/operators';
-import { CancelReservation, LoadReservations, LoadReservationsSuccess, ReservationActionTypes } from './reservation.actions';
+import {
+  ConfirmCancelReservation,
+  LoadReservations,
+  LoadReservationsSuccess,
+  ReservationActionTypes,
+  TimerLoaded,
+} from './reservation.actions';
 import { ReservationService } from '../../core/services/reservation/reservation.service';
 import { Reservation } from '../../core/models/reservation.model';
 
@@ -17,9 +23,15 @@ export class ReservationEffects {
     ),
   );
 
+  @Effect()
+  setTimer$ = this.actions$.pipe(
+    ofType<LoadReservationsSuccess>(ReservationActionTypes.LoadReservationsSuccess),
+    switchMap(() => this.reservationService.setTimer().pipe(map((timer: string) => new TimerLoaded({ timer })))),
+  );
+
   @Effect({ dispatch: false })
-  cancelReservation$ = this.actions$.pipe(
-    ofType<CancelReservation>(ReservationActionTypes.CancelReservation),
+  confirmCancelReservation$ = this.actions$.pipe(
+    ofType<ConfirmCancelReservation>(ReservationActionTypes.ConfirmCancelReservation),
     tap(() => sessionStorage.clear()),
   );
 

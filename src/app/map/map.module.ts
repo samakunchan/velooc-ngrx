@@ -26,6 +26,7 @@ import { CanvasEffects } from '../store/canvas/canvas.effects';
 import { canvasFeatureKey, canvasReducer } from '../store/canvas/canvas.reducer';
 import { reservationFeatureKey, reservationReducer } from '../store/reservation/reservation.reducer';
 import { ReservationEffects } from '../store/reservation/reservation.effects';
+import { ReservationResolver } from '../core/services/reservation/reservation.resolver';
 
 @NgModule({
   declarations: [MapComponent, ReservationDialogComponent, CanvasComponent],
@@ -43,7 +44,7 @@ import { ReservationEffects } from '../store/reservation/reservation.effects';
     ReactiveFormsModule,
     MatInputModule,
   ],
-  providers: [StationService, StationDataService, StationResolver, MapService, CanvasService],
+  providers: [StationService, StationDataService, StationResolver, MapService, CanvasService, ReservationResolver],
 })
 export class MapModule {
   constructor(
