@@ -1,21 +1,33 @@
 <ng-container>
   <mat-dialog-content>
-    <div style="display: flex; justify-content: space-between;">
+    <div class="reservation-timer">
       <h2>{{ showReservation.station.name }}</h2>
-      <ng-container *ngIf="timer$ | async as timer; else loading">Durée de la réservation: {{ timer }}</ng-container>
+      <ng-container *ngIf="timer$ | async as timer; else loading">
+        <p class="reservation-paragraph">
+          <mat-icon>av_timer</mat-icon>
+          <span class="reservation-info">{{ timer }}</span>
+        </p>
+      </ng-container>
       <ng-template #loading>{{ message }}</ng-template>
     </div>
-    <p>
-      Adresse: {{ showReservation.station.address }},
-      {{ showReservation.station.address2 === 'null' ? '' : showReservation.station.address2 }}
+    <p class="reservation-paragraph">
+      <mat-icon>location_on</mat-icon>
+      <span class="reservation-info"> {{ showReservation.station.address }},
+      {{ showReservation.station.address2 === 'null' ? '' : showReservation.station.address2 }}</span>
     </p>
-    <p>Commune: {{ showReservation.station.commune }}</p>
-    <p>Titulaire: {{ showReservation.nom }} {{ showReservation.prenom }}</p>
+    <p class="reservation-paragraph">
+      <mat-icon>location_city</mat-icon>
+      <span class="reservation-info">{{ showReservation.station.commune }}</span>
+    </p>
+    <p class="reservation-paragraph">
+      <mat-icon>book</mat-icon>
+      <span class="reservation-info">{{ showReservation.nom }} {{ showReservation.prenom }}</span>
+    </p>
     <img width="250" src="{{ showReservation.url }}" alt="Signature de la réservation" title="Signature de la réservation" />
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-raised-button (click)="onClose()" class="close-btn">Close</button>
     <button mat-raised-button (click)="onCancel()" class="clear-btn">Annuler</button>
-    <button mat-raised-button (click)="onConfirm()" *ngIf="cancel$ | async" class="valid-btn">Confirmer et annuler la réservation.</button>
+    <button mat-raised-button (click)="onConfirm()" *ngIf="cancel$ | async" class="valid-btn">Êtes-vous sûres?</button>
   </mat-dialog-actions>
 </ng-container>

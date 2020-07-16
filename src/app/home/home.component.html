@@ -1,24 +1,34 @@
 <ng-container *ngIf="reservation$ | async as reservation">
-  <button mat-raised-button class="btn primary-dark" style="position: absolute; right: 0;" (click)="showCompleteReservation(reservation)">
+  <button mat-raised-button class="btn primary-dark res-pc" (click)="showCompleteReservation(reservation)">
     Voir la réservation
   </button>
 </ng-container>
 <ng-container *ngIf="loaded$ | async">
-  <div style="text-align: center; width: 100%;">
+  <div class="home-container">
     <ng-container *ngIf="caroussel$ | async as caroussel">
       <div *ngIf="animation === 'fadeIn'" class="container">
         <mat-icon class="icon-header" [@jello]="animationState">{{ caroussel.path }}</mat-icon>
-        <div class="infos" [@fadeIn]="animationState" [@fadeOut]="!animationState">
+        <div class="home-container--infos" [@fadeIn]="animationState" [@fadeOut]="!animationState">
           <h1>{{ caroussel.title }}</h1>
           <h3>{{ caroussel.subTitle }}</h3>
         </div>
-        <button mat-icon-button (click)="onLeft(caroussel.id)">
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </button>
-        <button mat-icon-button (click)="onRight(caroussel.id)">
-          <mat-icon>keyboard_arrow_right</mat-icon>
-        </button>
+        <div class="home-container--home-btn">
+          <button mat-icon-button (click)="onLeft(caroussel.id)">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+          <button mat-icon-button (click)="onRight(caroussel.id)">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div style="padding: 50px">
+        <a mat-button routerLink="/map" style="color: white; background: #c43e00">C'est partie</a>
       </div>
     </ng-container>
   </div>
+</ng-container>
+<ng-container *ngIf="reservation$ | async as reservation">
+  <button mat-raised-button class="btn primary-dark res-mobile mat-elevation-z6" (click)="showCompleteReservation(reservation)">
+    Voir la réservation
+  </button>
 </ng-container>
