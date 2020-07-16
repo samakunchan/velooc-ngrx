@@ -75,15 +75,7 @@ body {
     color: $color-primary;
   }
 }
-.infos {
-  max-width: 500px;
-  margin: 0 auto;
-  color: $color-primary;
-  padding: 40px;
-  h1 {
-    font-weight: 400;
-  }
-}
+
 .mapboxgl-popup-tip {
   border-top-color: $color-primary !important;
 }
@@ -100,13 +92,22 @@ body {
   padding: 15px 10px 15px 10px;
   pointer-events: auto;
   min-width: 300px;
+  @media screen and (max-width: 425px) {
+    min-width: 0;
+  }
   h3 {
     color: white;
     font-size: 25px;
     font-weight: 400;
+    @media screen and (max-width: 425px) {
+      margin-top: 5px;
+    }
   }
   h4 {
     font-weight: 400;
+    @media screen and (max-width: 425px) {
+      margin: 0;
+    }
   }
 }
 .text-center {
@@ -116,6 +117,9 @@ body {
 .valid-btn {
   background-color: #c43e00;
   color: white;
+  @media screen and (max-width: 425px) {
+    margin: 15px !important;
+  }
 }
 .clear-btn {
   background-color: #ffa040;
@@ -123,4 +127,64 @@ body {
 .close-btn {
   background-color: #ff6f00;
   color: white;
+}
+.home-container {
+  text-align: center;
+  width: 100%;
+  &--infos {
+    max-width: 500px;
+    margin: 0 auto;
+    color: $color-primary;
+    padding: 40px;
+    h1 {
+      font-weight: 400;
+      @media screen and (max-width: 425px) {
+        font-size: 20px;
+      }
+    }
+  }
+  &--home-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+.res-pc {
+  font-weight: 400;
+  @media screen and (max-width: 425px) {
+    display: none !important;
+  }
+}
+.res-mobile {
+  width: 100%;
+  position: absolute !important;
+  bottom: 0;
+  padding: 10px !important;
+  font-weight: 400;
+  @media screen and (min-width: 426px) {
+    display: none !important;
+  }
+}
+.reservation-timer {
+  display: flex;
+  justify-content: space-between;
+  h2 {
+    color: #c43e00;
+  }
+  @media screen and (max-width: 425px) {
+    display: block;
+  }
+}
+.reservation-paragraph {
+  display: flex !important;
+  align-items: center !important;
+  mat-icon {
+    color: #c43e00;
+  }
+  .reservation-info {
+    margin-left: 10px;
+  }
+}
+.mat-dialog-container {
+  padding: 15px !important;
 }
