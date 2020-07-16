@@ -15,8 +15,9 @@
 <ng-container *ngIf="isReservationActives$ | async as isActive">
   <div class="map-reserver" *ngIf="isActive === 'no'">
     <ng-container *ngIf="stationSelected$ | async as station">
-      <button mat-raised-button color="warn" class="map-reserver--btn" (click)="onChooseStation(station)">Reserver à cette station
-        .</button>
+      <button mat-raised-button color="warn" class="map-reserver--btn" (click)="onChooseStation(station)">
+        Reserver à cette station .
+      </button>
     </ng-container>
   </div>
 </ng-container>

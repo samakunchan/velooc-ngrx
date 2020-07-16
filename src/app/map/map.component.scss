@@ -5,7 +5,7 @@
   margin: 0 auto;
   border: solid #c43e00 6px;
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15) !important;
-  @media screen and (max-width: 425px){
+  @media screen and (max-width: 425px) {
     height: 400px;
   }
 }
@@ -20,18 +20,19 @@
     padding: 15px;
     background: #ffa040;
     font-weight: 400;
-    @media screen and (max-width: 425px){
+    @media screen and (max-width: 425px) {
       width: 100%;
     }
   }
-  @media screen and (max-width: 425px){
+  @media screen and (max-width: 425px) {
     width: 100%;
     bottom: 0;
-    right: 0!important;
+    right: 0 !important;
   }
 }
 .map-infos {
-  h1, h3 {
+  h1,
+  h3 {
     font-weight: 400;
   }
 }
