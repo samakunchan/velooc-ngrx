@@ -4,7 +4,7 @@
   </button>
 </ng-container>
 <ng-container *ngIf="loaded$ | async">
-  <div class="home-container" style="position: relative">
+  <div class="home-container" style="position: relative;">
     <ng-container *ngIf="caroussel$ | async as caroussel">
       <div *ngIf="animation === 'fadeIn'" class="container">
         <mat-icon class="icon-header" [@jello]="animationState">{{ caroussel.path }}</mat-icon>
@@ -25,8 +25,8 @@
         <a mat-button routerLink="/map" style="color: white; background: #c43e00;">C'est partie</a>
       </div>
     </ng-container>
-    <mat-icon style="position: absolute; font-size: 500px; z-index: -1; top: 20%; color: #c43e00; left: 0">location_city</mat-icon>
-    <mat-icon style="position: absolute; font-size: 500px; z-index: -1; top: 30%; color: #c43e00">terrain</mat-icon>
+    <mat-icon style="position: absolute; font-size: 500px; z-index: -1; top: 20%; color: #c43e00; left: 0;">location_city</mat-icon>
+    <mat-icon style="position: absolute; font-size: 500px; z-index: -1; top: 30%; color: #c43e00;">terrain</mat-icon>
   </div>
 </ng-container>
 <ng-container *ngIf="reservation$ | async as reservation">
