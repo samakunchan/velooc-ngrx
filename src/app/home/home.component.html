@@ -21,10 +21,19 @@
           </button>
         </div>
       </div>
-      <div style="padding: 50px;">
-        <a mat-button routerLink="/map" style="color: white; background: #c43e00;">C'est partie</a>
+      <div class="home-container--block">
+        <a mat-button routerLink="/map" class="home-container--block__link">C'est partie</a>
       </div>
     </ng-container>
+    <div class="home-container--blockicons">
+      <mat-icon class="home-container--blockicons__terrain">terrain</mat-icon>
+      <mat-icon class="home-container--blockicons__city">location_city </mat-icon>
+      <div class="home-container--blockicons--subicons">
+        <mat-icon class="home-container--blockicons--subicons__walk"> directions_walk</mat-icon>
+        <mat-icon class="home-container--blockicons--subicons__store"> store_mall_directory</mat-icon>
+        <mat-icon class="home-container--blockicons--subicons__bike"> directions_bike</mat-icon>
+      </div>
+    </div>
   </div>
 </ng-container>
 <ng-container *ngIf="reservation$ | async as reservation">
