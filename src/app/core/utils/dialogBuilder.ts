@@ -25,6 +25,7 @@ export class DialogBuilder {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = this.width;
+    dialogConfig.maxHeight = 500;
     dialogConfig.data = {
       dialogTitle: this.title,
       datas: this.datas,

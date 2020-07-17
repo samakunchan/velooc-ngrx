@@ -36,10 +36,10 @@ export class ReservationCompleteComponent implements OnInit, OnDestroy {
           const time = Date.now() - Number(timer);
           const timeRemain = minInMs - time;
 
-          const minutesRemain = Math.floor(timeRemain / 1000 / 60);
-          let secondsRemain = Math.floor((timeRemain / 1000) % 60);
-          if (String(secondsRemain).length === 1) {
-            secondsRemain = +'0' + secondsRemain;
+          const minutesRemain = String(Math.floor(timeRemain / 1000 / 60));
+          let secondsRemain: string = String(Math.floor((timeRemain / 1000) % 60));
+          if (secondsRemain.length === 1) {
+            secondsRemain = `0${secondsRemain}`;
           }
           if (time < minInMs) {
             return minutesRemain + 'min ' + secondsRemain + 's';
