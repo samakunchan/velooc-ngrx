@@ -123,6 +123,13 @@ body {
 }
 .clear-btn {
   background-color: #ffa040;
+  @media screen and (max-width: 425px) {
+    position: absolute !important;
+    right: 0 !important;
+  }
+}
+.cancel-btn {
+  background-color: #ffa040;
 }
 .close-btn {
   background-color: #ff6f00;
@@ -137,7 +144,7 @@ body {
 }
 .res-mobile {
   width: 100%;
-  position: absolute !important;
+  position: fixed !important;
   bottom: 0;
   padding: 10px !important;
   font-weight: 400;
@@ -168,7 +175,11 @@ body {
   }
 }
 .mat-dialog-container {
+  overflow: hidden !important;
   @media screen and (max-width: 425px) {
     padding: 15px !important;
   }
+}
+.mat-tab-body-content {
+  overflow: hidden !important;
 }

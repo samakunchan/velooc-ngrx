@@ -1,7 +1,9 @@
 <ng-container *ngIf="reservation$ | async as reservation">
-  <button mat-raised-button class="btn primary-dark res-pc" (click)="showCompleteReservation(reservation)">
-    Voir la réservation
-  </button>
+  <div class="text-center">
+    <button mat-raised-button class="btn primary-dark res-pc" (click)="showCompleteReservation(reservation)">
+      Voir la réservation
+    </button>
+  </div>
 </ng-container>
 <ng-container *ngIf="loaded$ | async">
   <div class="map-infos">
@@ -15,7 +17,7 @@
 <ng-container *ngIf="isReservationActives$ | async as isActive">
   <div class="map-reserver" *ngIf="isActive === 'no'">
     <ng-container *ngIf="stationSelected$ | async as station">
-      <button mat-raised-button color="warn" class="map-reserver--btn" (click)="onChooseStation(station)">
+      <button mat-raised-button color="primary" class="map-reserver--btn" (click)="onChooseStation(station)">
         Reserver à cette station .
       </button>
     </ng-container>

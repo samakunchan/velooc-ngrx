@@ -39,8 +39,8 @@ export class ReservationDialogComponent implements OnInit {
     this.dialogTitle = this.data.dialogTitle;
     this.station = this.data.datas;
     this.reservationForm = this.formBuilder.group({
-      nom: ['Badjah', [Validators.required, Validators.minLength(3)]],
-      prenom: ['Cédric', [Validators.required, Validators.minLength(3)]],
+      nom: ['', [Validators.required, Validators.minLength(3)]],
+      prenom: ['', [Validators.required, Validators.minLength(3)]],
     });
     this.reservationForm.patchValue({ ...this.data.station });
   }
