@@ -51,7 +51,7 @@ body {
   .sidebar-header {
     text-align: center;
     background-color: #c43e00;
-    min-width: 300px;
+    min-width: 240px;
     padding: 20px;
     .icon-header {
       font-size: 120px;
@@ -128,27 +128,7 @@ body {
   background-color: #ff6f00;
   color: white;
 }
-.home-container {
-  text-align: center;
-  width: 100%;
-  &--infos {
-    max-width: 500px;
-    margin: 0 auto;
-    color: $color-primary;
-    padding: 40px;
-    h1 {
-      font-weight: 400;
-      @media screen and (max-width: 425px) {
-        font-size: 20px;
-      }
-    }
-  }
-  &--home-btn {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-}
+
 .res-pc {
   font-weight: 400;
   @media screen and (max-width: 425px) {

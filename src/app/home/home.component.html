@@ -4,7 +4,7 @@
   </button>
 </ng-container>
 <ng-container *ngIf="loaded$ | async">
-  <div class="home-container" style="position: relative;">
+  <div class="home-container">
     <ng-container *ngIf="caroussel$ | async as caroussel">
       <div *ngIf="animation === 'fadeIn'" class="container">
         <mat-icon class="icon-header" [@jello]="animationState">{{ caroussel.path }}</mat-icon>
@@ -21,12 +21,19 @@
           </button>
         </div>
       </div>
-      <div style="padding: 50px;">
-        <a mat-button routerLink="/map" style="color: white; background: #c43e00;">C'est partie</a>
+      <div class="home-container--block">
+        <a mat-button routerLink="/map" class="home-container--block__link">C'est partie</a>
       </div>
     </ng-container>
-    <mat-icon style="position: absolute; font-size: 500px; z-index: -1; top: 20%; color: #c43e00; left: 0;">location_city</mat-icon>
-    <mat-icon style="position: absolute; font-size: 500px; z-index: -1; top: 30%; color: #c43e00;">terrain</mat-icon>
+    <div class="home-container--blockicons">
+      <mat-icon class="home-container--blockicons__terrain">terrain</mat-icon>
+      <mat-icon class="home-container--blockicons__city">location_city </mat-icon>
+      <div class="home-container--blockicons--subicons">
+        <mat-icon class="home-container--blockicons--subicons__walk"> directions_walk</mat-icon>
+        <mat-icon class="home-container--blockicons--subicons__store"> store_mall_directory</mat-icon>
+        <mat-icon class="home-container--blockicons--subicons__bike"> directions_bike</mat-icon>
+      </div>
+    </div>
   </div>
 </ng-container>
 <ng-container *ngIf="reservation$ | async as reservation">
