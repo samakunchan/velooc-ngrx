@@ -1,4 +1,4 @@
-<mat-sidenav-container fullscreen [ngStyle]="{ 'background-color': '#ffa040' }">
+<mat-sidenav-container fullscreen [ngStyle]="{ 'background-color': '#ffa040', 'max-width': '1340px', 'margin': '0 auto' }">
   <mat-sidenav class="mat-sidenav" #start>
     <div class="sidebar-header">
       <div class="icon-header-container">
@@ -16,7 +16,7 @@
     <button class="menu-button" mat-icon-button (click)="start.open('mouse')">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="title">Velyon</span>
+    <span class="title">Velyon Service</span>
     <div class="flex-spacer"></div>
 
     <a mat-list-item routerLink="/home" class="nav-link">Home</a>
